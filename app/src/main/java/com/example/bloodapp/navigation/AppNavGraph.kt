@@ -81,5 +81,6 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Destinations.PROFILE_ROUTE) {
             ProfileScreen(navController)
         }
+
     }
 }
