@@ -804,7 +804,7 @@ fun HospitalListScreen(navController: NavController) {
                 id = 2,
                 name = "Late Shri Mukeshbhai Patel Blood Bank",
                 type = "Blood Bank",
-                address = "456 Oak Avenue, Mumbai",
+                address = "shirpur",
                 distance = "3.2 km",
                 rating = 4.8f,
                 imageRes = R.drawable.mukesh,
@@ -817,7 +817,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "789 Pine Road, Mumbai",
                 distance = "1.8 km",
                 rating = 4.2f,
-                imageRes = R.drawable.indira,
+                imageRes = R.drawable.ic_launcher_foreground,
                 phone = "1234567890"
             ),
             Hospital(
@@ -827,7 +827,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "321 Elm Street, Mumbai",
                 distance = "4.1 km",
                 rating = 4.7f,
-                imageRes = R.drawable.mukesh,
+                imageRes = R.drawable.ic_launcher_foreground,
                 phone = "1234567890"
             ),
             Hospital(
@@ -837,7 +837,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "654 Maple Lane, Mumbai",
                 distance = "2.9 km",
                 rating = 4.6f,
-                imageRes = R.drawable.indira,
+                imageRes = R.drawable.ic_launcher_foreground,
                 phone = "1234567890"
             )
         )
