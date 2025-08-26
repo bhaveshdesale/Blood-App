@@ -104,7 +104,7 @@ fun LoginScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(32.dp))
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    painter = painterResource(id = R.drawable.blood),
                     contentDescription = "App Logo",
                     modifier = Modifier.size(120.dp)
                 )
@@ -204,7 +204,7 @@ fun LoginScreen(navController: NavController) {
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
-                        navController.navigate("home") // Replace with your signup route
+                        navController.navigate(Destinations.HOME_ROUTE) // FIXED: Use constant instead of string
                     }
                 )
             }

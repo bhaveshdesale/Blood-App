@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.bloodapp.R
+import com.example.bloodapp.ui.screens.home.BottomNavigationBar
 import com.example.bloodapp.ui.theme.LightGrayBg
 import com.example.bloodapp.ui.theme.Red500
 import com.example.bloodapp.ui.theme.TextGray
@@ -123,7 +125,8 @@ fun HistoryScreen(navigatonController: NavController) {
             HistoryTopAppBar(navigatonController)
         },
         bottomBar = {
-            HistoryBottomNavigation(navigatonController)
+//            HistoryBottomNavigation(navigatonController)
+            BottomNavigationBar(navigatonController)
         }
     ) { innerPadding ->
         Column(
@@ -226,7 +229,7 @@ fun HistoryCard(historyItem: HistoryItem) {
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    imageVector = Icons.Default.Check,
+                    painter = painterResource(id=R.drawable.mukesh),
                     contentDescription = historyItem.type,
                     tint = borderColor,
                     modifier = Modifier.size(20.dp)
@@ -280,7 +283,7 @@ fun HistoryCard(historyItem: HistoryItem) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Call,
+                        imageVector = Icons.Default.Home,
                         contentDescription = "Hospital",
                         tint = TextGray,
                         modifier = Modifier.size(14.dp)
@@ -296,71 +299,72 @@ fun HistoryCard(historyItem: HistoryItem) {
         }
     }
 }
+//
+//@Composable
+//fun HistoryBottomNavigation(navigationController: NavController) {
+//    Surface(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .background(Color.White),
+//        color = Color.White
+//    ) {
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(vertical = 12.dp),
+//            horizontalArrangement = Arrangement.SpaceAround,
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            BottomNavItem(
+//                icon = R.drawable.baseline_home_24,
+//                label = "Check my donation",
+//                isSelected = false,
+//                onClick = {
+//                    navigationController.navigate("check_donation")
+//                }
+//            )
+//            BottomNavItem(
+//                icon = R.drawable.baseline_chat_24,
+//                label = "Rare blood type",
+//                isSelected = false,
+//                onClick = {
+//                    navigationController.navigate("rare_groups")
+//                }
+//            )
+//            BottomNavItem(
+//                icon = R.drawable.baseline_history_24,
+//                label = "History",
+//                isSelected = true, // Current screen is active
+//                onClick = { /* Already on history screen */ }
+//            )
+//        }
+//    }
+//}
+//
+//@Composable
+//fun BottomNavItem(icon: Int, label: String, isSelected: Boolean, onClick: () -> Unit) {
+//    Column(
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        modifier = Modifier
+//            .clickable { onClick() }
+//            .padding(8.dp)
+//            .width(80.dp)
+//    ) {
+//        Icon(
+//            painter = painterResource(id = icon),
+//            contentDescription = label,
+//            tint = if (isSelected) Red500 else TextGray,
+//            modifier = Modifier.size(24.dp)
+//        )
+//        Spacer(modifier = Modifier.height(4.dp))
+//        Text(
+//            text = label,
+//            color = if (isSelected) Red500 else TextGray,
+//            fontSize = 10.sp,
+//            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+//            textAlign = TextAlign.Center,
+//            maxLines = 2
+//        )
+//    }
+//}
 
-@Composable
-fun HistoryBottomNavigation(navigationController: NavController) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.White),
-        color = Color.White
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            BottomNavItem(
-                icon = R.drawable.baseline_home_24,
-                label = "Check my donation",
-                isSelected = false,
-                onClick = {
-                    navigationController.navigate("check_donation")
-                }
-            )
-            BottomNavItem(
-                icon = R.drawable.baseline_chat_24,
-                label = "Rare blood type",
-                isSelected = false,
-                onClick = {
-                    navigationController.navigate("rare_groups")
-                }
-            )
-            BottomNavItem(
-                icon = R.drawable.baseline_history_24,
-                label = "History",
-                isSelected = true, // Current screen is active
-                onClick = { /* Already on history screen */ }
-            )
-        }
-    }
-}
-
-@Composable
-fun BottomNavItem(icon: Int, label: String, isSelected: Boolean, onClick: () -> Unit) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .clickable { onClick() }
-            .padding(8.dp)
-            .width(80.dp)
-    ) {
-        Icon(
-            painter = painterResource(id = icon),
-            contentDescription = label,
-            tint = if (isSelected) Red500 else TextGray,
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = label,
-            color = if (isSelected) Red500 else TextGray,
-            fontSize = 10.sp,
-            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-            textAlign = TextAlign.Center,
-            maxLines = 2
-        )
-    }
-}

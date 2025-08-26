@@ -15,4 +15,5 @@ object Destinations {
     const val HISTORY_ROUTE = "history"
     const val RARE_GROUPS_ROUTE = "rare_groups"
     const val PROFILE_ROUTE = "profile"
+    const val CHECK_MY_DONATION_ROUTE = "check_my_donation"
 }

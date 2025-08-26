@@ -3,6 +3,7 @@ package com.example.bloodapp.ui.screens.rare
 // app/src/main/java/com/example/vitalconnect/ui/screens/rare/RareBloodGroupScreen.kt
 
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -51,6 +53,7 @@ import com.example.bloodapp.ui.theme.TextGray
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RareBloodGroupScreen(navController: NavController) {
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             RareGroupTopAppBar(navController)
@@ -88,7 +91,7 @@ fun RareBloodGroupScreen(navController: NavController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                        painter = painterResource(id = R.drawable.blood),
                         contentDescription = "Rare blood donors connection",
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.fillMaxSize()
@@ -134,7 +137,12 @@ fun RareBloodGroupScreen(navController: NavController) {
             Button(
                 onClick = {
                     // Handle join group action
-                    navController.navigate("rare_group_join")
+//                    navController.navigate("rare_group_join")
+                    Toast.makeText(
+                        context,
+                        "There is no group yet",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 },
                 modifier = Modifier
                     .fillMaxWidth()

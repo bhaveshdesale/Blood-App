@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.bloodapp" />
+                  <option name="mobileSdkAppId" value="1:168125223629:android:e9a7048edb10d0d884cf84" />
+                  <option name="projectId" value="blood-app-9d790" />
+                  <option name="projectNumber" value="168125223629" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

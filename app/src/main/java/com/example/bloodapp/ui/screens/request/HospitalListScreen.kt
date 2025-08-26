@@ -741,6 +741,7 @@
 
 package com.example.bloodapp.ui.screens.request
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -760,6 +761,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -783,6 +785,7 @@ data class Hospital(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun HospitalListScreen(navController: NavController) {
     val searchQuery = remember { mutableStateOf("") }
     val hospitals = remember {
@@ -794,7 +797,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "Shirpur",
                 distance = "2.5 km",
                 rating = 4.5f,
-                imageRes = R.drawable.ic_launcher_foreground,
+                imageRes = R.drawable.indira,
                 phone = "1234567890"
             ),
             Hospital(
@@ -804,17 +807,17 @@ fun HospitalListScreen(navController: NavController) {
                 address = "456 Oak Avenue, Mumbai",
                 distance = "3.2 km",
                 rating = 4.8f,
-                imageRes = R.drawable.ic_launcher_foreground,
+                imageRes = R.drawable.mukesh,
                 phone = "1234567890"
             ),
             Hospital(
                 id = 3,
-                name = "Community Health Clinic",
+                name = "Indira Gandhi Memorial Hospital",
                 type = "Hospital",
                 address = "789 Pine Road, Mumbai",
                 distance = "1.8 km",
                 rating = 4.2f,
-                imageRes = R.drawable.ic_launcher_foreground,
+                imageRes = R.drawable.indira,
                 phone = "1234567890"
             ),
             Hospital(
@@ -824,7 +827,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "321 Elm Street, Mumbai",
                 distance = "4.1 km",
                 rating = 4.7f,
-                imageRes = R.drawable.ic_launcher_foreground,
+                imageRes = R.drawable.mukesh,
                 phone = "1234567890"
             ),
             Hospital(
@@ -834,7 +837,7 @@ fun HospitalListScreen(navController: NavController) {
                 address = "654 Maple Lane, Mumbai",
                 distance = "2.9 km",
                 rating = 4.6f,
-                imageRes = R.drawable.ic_launcher_background,
+                imageRes = R.drawable.indira,
                 phone = "1234567890"
             )
         )
@@ -990,19 +993,18 @@ fun HospitalCard(hospital: Hospital, onItemClick: () -> Unit) {
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Hospital Image/Icon
+            // Hospital Image - Using the actual drawable resource
             Box(
                 modifier = Modifier
                     .size(60.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(if (hospital.type == "Hospital") Color(0xFFE3F2FD) else Color(0xFFFFEBEE)),
+                    .clip(RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = hospital.type,
-                    tint = if (hospital.type == "Hospital") Color(0xFF1976D2) else Red500,
-                    modifier = Modifier.size(30.dp)
+                Image(
+                    painter = painterResource(id = hospital.imageRes),
+                    contentDescription = hospital.name,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
                 )
             }
 
@@ -1057,7 +1059,7 @@ fun HospitalCard(hospital: Hospital, onItemClick: () -> Unit) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_arrow_back_24),
+                        painter = painterResource(id = R.drawable.baseline_arrow_back_24), // Changed to star icon for rating
                         contentDescription = "Rating",
                         tint = Color(0xFFFFC107),
                         modifier = Modifier.size(14.dp)

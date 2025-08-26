@@ -17,5 +17,8 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_NAME = "blood_app_db"
+
+        // For debugging, you can add .setJournalMode(JournalMode.TRUNCATE)
+        // or .fallbackToDestructiveMigration() during development
     }
 }

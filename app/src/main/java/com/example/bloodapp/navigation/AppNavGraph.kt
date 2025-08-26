@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.bloodapp.ui.screens.auth.LoginScreen
 import com.example.bloodapp.ui.screens.auth.SignupScreen
+import com.example.bloodapp.ui.screens.donation.CheckMyDonation
 import com.example.bloodapp.ui.screens.donor.DonorFormScreen
 import com.example.bloodapp.ui.screens.donor.DonorSuccessScreen
 import com.example.bloodapp.ui.screens.history.HistoryScreen
@@ -80,6 +81,9 @@ fun AppNavGraph(navController: NavHostController) {
 
         composable(Destinations.PROFILE_ROUTE) {
             ProfileScreen(navController)
+        }
+        composable(Destinations.CHECK_MY_DONATION_ROUTE) {
+            CheckMyDonation(navController)
         }
 
     }

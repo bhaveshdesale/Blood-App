@@ -1,17 +1,21 @@
 package com.example.bloodapp.viewmodel
 
-// app/src/main/java/com/example/bloodapp/ui/viewmodels/AuthViewModel.kt
-
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bloodapp.data.model.User
 import com.example.bloodapp.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val userRepository: UserRepository // Remove the val keyword
+) : ViewModel() {
 
     private val _registrationState = MutableStateFlow<RegistrationState>(RegistrationState.Idle)
     val registrationState: StateFlow<RegistrationState> = _registrationState
@@ -23,19 +27,22 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             _registrationState.value = RegistrationState.Loading
             try {
-                // Check if email already exists
-                val existingUser = userRepository.getUserByEmail(user.email)
-                if (existingUser != null) {
-                    _registrationState.value = RegistrationState.Error("Email already registered")
-                    return@launch
-                }
+                // Use IO dispatcher for database operations
+                val result = withContext(Dispatchers.IO) {
+                    // Check if email already exists
+                    val existingUser = userRepository.getUserByEmail(user.email)
+                    if (existingUser != null) {
+                        return@withContext RegistrationState.Error("Email already registered")
+                    }
 
-                val userId = userRepository.registerUser(user)
-                if (userId > 0) {
-                    _registrationState.value = RegistrationState.Success(userId)
-                } else {
-                    _registrationState.value = RegistrationState.Error("Registration failed")
+                    val userId = userRepository.registerUser(user)
+                    if (userId > 0) {
+                        RegistrationState.Success(userId)
+                    } else {
+                        RegistrationState.Error("Registration failed")
+                    }
                 }
+                _registrationState.value = result
             } catch (e: Exception) {
                 _registrationState.value = RegistrationState.Error(e.message ?: "Registration failed")
             }
@@ -46,12 +53,16 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val user = userRepository.loginUser(email, password)
-                if (user != null) {
-                    _loginState.value = LoginState.Success(user)
-                } else {
-                    _loginState.value = LoginState.Error("Invalid email or password")
+                // Use IO dispatcher for database operations
+                val result = withContext(Dispatchers.IO) {
+                    val user = userRepository.loginUser(email, password)
+                    if (user != null) {
+                        LoginState.Success(user)
+                    } else {
+                        LoginState.Error("Invalid email or password")
+                    }
                 }
+                _loginState.value = result
             } catch (e: Exception) {
                 _loginState.value = LoginState.Error(e.message ?: "Login failed")
             }

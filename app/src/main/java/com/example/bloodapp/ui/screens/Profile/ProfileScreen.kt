@@ -1,7 +1,5 @@
 package com.example.bloodapp.ui.screens.Profile
 
-// app/src/main/java/com/example/vitalconnect/ui/screens/profile/ProfileScreen.kt
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -46,10 +44,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import android.widget.Toast
 import com.example.bloodapp.ui.theme.LightGrayBg
 import com.example.bloodapp.ui.theme.Red500
 import com.example.bloodapp.ui.theme.TextGray
@@ -70,6 +70,7 @@ data class UserProfile(
 fun ProfileScreen(navController: NavController) {
     val userProfile = remember { UserProfile() }
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -102,7 +103,12 @@ fun ProfileScreen(navController: NavController) {
             // Edit Profile Button
             Button(
                 onClick = {
-                    navController.navigate("edit_profile")
+                    // Show toast instead of navigating
+                    Toast.makeText(
+                        context,
+                        "Edit profile is not implemented yet",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 },
                 modifier = Modifier
                     .fillMaxWidth()
