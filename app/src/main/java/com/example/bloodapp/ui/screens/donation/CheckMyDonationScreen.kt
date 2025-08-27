@@ -55,21 +55,10 @@ import com.example.bloodapp.ui.theme.LightGrayBg
 import com.example.bloodapp.ui.theme.Red500
 import com.example.bloodapp.ui.theme.TextGray
 
-data class UserProfile(
-    val name: String = "Dipali Potdar",
-    val bloodType: String = "O+",
-    val lastDonation: String = "2 months ago",
-    val age: Int = 22,
-    val weight: Int = 48,
-    val address: String = "Dhule",
-    val contact: String = "+91 9876543210",
-    val email: String = "dipalipotdar@gmail.com"
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CheckMyDonation(navController: NavController) {
-    val userProfile = remember { UserProfile() }
     val scrollState = rememberScrollState()
     val context = LocalContext.current
 
@@ -85,55 +74,10 @@ fun CheckMyDonation(navController: NavController) {
                 .background(Color.White)
                 .verticalScroll(scrollState)
         ) {
-            // Header
 
-
-            // Profile Summary Card
-//            ProfileSummaryCard(userProfile)
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Edit Profile Button
-//            Button(
-//                onClick = {
-//                    // Show toast instead of navigating
-//                    Toast.makeText(
-//                        context,
-//                        "Edit profile is not implemented yet",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                },
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 24.dp)
-//                    .height(48.dp),
-//                shape = RoundedCornerShape(12.dp),
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = LightGrayBg,
-//                    contentColor = Red500
-//                ),
-//                elevation = ButtonDefaults.buttonElevation(
-//                    defaultElevation = 2.dp,
-//                    pressedElevation = 1.dp
-//                )
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Edit,
-//                    contentDescription = "Edit Profile",
-//                    modifier = Modifier.size(20.dp)
-//                )
-//                Spacer(modifier = Modifier.width(8.dp))
-//                Text(
-//                    text = "Edit Profile",
-//                    fontSize = 16.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-
-            Spacer(modifier = Modifier.height(32.dp))
 
             // Personal Information Section
-            PersonalInformationSection(userProfile)
+            PersonalInformationSection()
 
             Spacer(modifier = Modifier.height(32.dp))
         }
@@ -169,113 +113,22 @@ fun ProfileTopAppBar(navController: NavController) {
     )
 }
 
-//@Composable
-//fun ProfileSummaryCard(profile: UserProfile) {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(horizontal = 24.dp),
-//        shape = RoundedCornerShape(20.dp),
-//        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-//        colors = CardDefaults.cardColors(containerColor = Color.White)
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(24.dp),
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ) {
-//            // Profile Avatar
-//            Box(
-//                modifier = Modifier
-//                    .size(80.dp)
-//                    .clip(CircleShape)
-//                    .background(Red500.copy(alpha = 0.2f))
-//                    .padding(16.dp),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                Text(
-//                    text = profile.name.split(" ").map { it.first() }.joinToString(""),
-//                    fontSize = 20.sp,
-//                    fontWeight = FontWeight.Bold,
-//                    color = Red500
-//                )
-//            }
-//
-//            Spacer(modifier = Modifier.height(16.dp))
-//
-//            // Name
-//            Text(
-//                text = profile.name,
-//                fontSize = 20.sp,
-//                fontWeight = FontWeight.Bold,
-//                color = Color.Black
-//            )
-//
-//            Spacer(modifier = Modifier.height(8.dp))
-//
-//            // Blood Type
-//            Row(
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Person,
-//                    contentDescription = "Blood Type",
-//                    tint = Red500,
-//                    modifier = Modifier.size(16.dp)
-//                )
-//                Spacer(modifier = Modifier.width(8.dp))
-//                Text(
-//                    text = "Blood Type: ${profile.bloodType}",
-//                    fontSize = 14.sp,
-//                    color = TextGray
-//                )
-//            }
-//
-//            Spacer(modifier = Modifier.height(8.dp))
-//
-//            // Last Donation
-//            Row(
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.DateRange,
-//                    contentDescription = "Last Donation",
-//                    tint = TextGray,
-//                    modifier = Modifier.size(16.dp)
-//                )
-//                Spacer(modifier = Modifier.width(8.dp))
-//                Text(
-//                    text = "Last Donation: ${profile.lastDonation}",
-//                    fontSize = 14.sp,
-//                    color = TextGray
-//                )
-//            }
-//        }
-//    }
-//}
 
 @Composable
-fun PersonalInformationSection(profile: UserProfile) {
+fun PersonalInformationSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
     ) {
         // Section Title
-        Text(
-            text = "Personal Information",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+
 
         // Age
         InfoRow(
             icon = Icons.Default.Person,
-            label = "Age",
-            value = "${profile.age} years"
+            label = "Donar Name",
+            value = "Dipali Potdar"
         )
 
         Divider(
@@ -287,8 +140,8 @@ fun PersonalInformationSection(profile: UserProfile) {
         // Weight
         InfoRow(
             icon = Icons.Default.Person,
-            label = "Weight",
-            value = "${profile.weight} kg"
+            label = "Donation Date",
+            value = " 27/06/2025"
         )
 
         Divider(
@@ -300,8 +153,8 @@ fun PersonalInformationSection(profile: UserProfile) {
         // Address
         InfoRow(
             icon = Icons.Default.LocationOn,
-            label = "Address",
-            value = profile.address
+            label = "Donation",
+            value = " O+"
         )
 
         Divider(
@@ -313,8 +166,8 @@ fun PersonalInformationSection(profile: UserProfile) {
         // Contact
         InfoRow(
             icon = Icons.Default.Phone,
-            label = "Contact",
-            value = profile.contact
+            label = "Donation",
+            value = "Unlisted"
         )
 
         Divider(
@@ -323,12 +176,6 @@ fun PersonalInformationSection(profile: UserProfile) {
             modifier = Modifier.padding(vertical = 12.dp)
         )
 
-        // Email
-        InfoRow(
-            icon = Icons.Default.Email,
-            label = "Email",
-            value = profile.email
-        )
     }
 }
 

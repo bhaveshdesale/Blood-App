@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.LocationOn
@@ -35,6 +36,187 @@ import com.example.bloodapp.ui.theme.LightGrayBg
 import com.example.bloodapp.ui.theme.Red500
 import com.example.bloodapp.ui.theme.TextGray
 
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun HomeScreen(navController: NavController) {
+//    val searchQuery = remember { mutableStateOf("") }
+//    val showSearchResults = remember { mutableStateOf(false) }
+//
+//    Scaffold(
+//        topBar = {
+//            TopAppBar(
+//                title = {
+//                    Row(
+//                        verticalAlignment = Alignment.CenterVertically,
+//                        modifier = Modifier.fillMaxWidth()
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Default.LocationOn,
+//                            contentDescription = "Location",
+//                            tint = Red500,
+//                            modifier = Modifier.size(24.dp)
+//                        )
+//                        Spacer(modifier = Modifier.width(8.dp))
+//                        Text(
+//                            text = "Mumbai, India",
+//                            fontWeight = FontWeight.Bold,
+//                            fontSize = 18.sp
+//                        )
+//                    }
+//                },
+//                actions = {
+//                    IconButton(onClick = {
+//                        navController.navigate(Destinations.PROFILE_ROUTE)
+//                    }) {
+//                        Icon(
+//                            imageVector = Icons.Default.Person,
+//                            contentDescription = "Profile",
+//                            tint = Color.Black
+//                        )
+//                    }
+//                },
+//                colors = TopAppBarDefaults.topAppBarColors(
+//                    containerColor = Color.White,
+//                    titleContentColor = Color.Black
+//                )
+//            )
+//        },
+//        bottomBar = {
+//            BottomNavigationBar(navController)
+//        }
+//    ) { innerPadding ->
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(innerPadding)
+//                .background(Color.White)
+//        ) {
+//            // Search Bar - Now with functional search
+//            Surface(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 12.dp, vertical = 8.dp),
+//                shape = RoundedCornerShape(12.dp),
+//                color = LightGrayBg
+//            ) {
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(horizontal = 10.dp, vertical = 10.dp),
+//                    verticalAlignment = Alignment.CenterVertically
+//                ) {
+//                    Icon(
+//                        imageVector = Icons.Default.Search,
+//                        contentDescription = "Search",
+//                        tint = TextGray,
+//                        modifier = Modifier.size(20.dp)
+//                    )
+//                    Spacer(modifier = Modifier.width(8.dp))
+//                    OutlinedTextField(
+//                        value = searchQuery.value,
+//                        onValueChange = {
+//                            searchQuery.value = it
+//                            showSearchResults.value = it.isNotEmpty()
+//                        },
+//                        modifier = Modifier.weight(1f),
+//                        placeholder = {
+//                            Text(
+//                                "Search blood, hospitals, or blood banks",
+//                                color = TextGray,
+//                                fontSize = 14.sp
+//                            )
+//                        },
+//                        singleLine = true,
+//                        colors = TextFieldDefaults.outlinedTextFieldColors(
+//                            focusedBorderColor = Color.Transparent,
+//                            unfocusedBorderColor = Color.Transparent,
+//                            containerColor = Color.Transparent
+//                        )
+//                    )
+//                }
+//            }
+//
+//            if (showSearchResults.value) {
+//                // Show search results
+//                SearchResultsSection(
+//                    searchQuery = searchQuery,
+//                    onClose = {
+//                        searchQuery.value = ""
+//                        showSearchResults.value = false
+//                    },
+//                    navController = navController
+//                )
+//            } else {
+//                // Original content
+//                Box(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(450.dp)
+//                        .padding(16.dp)
+//                        .clip(RoundedCornerShape(12.dp))
+//                ) {
+//                    Image(
+//                        painter = painterResource(id = R.drawable.home),
+//                        contentDescription = "Blood Donation",
+//                        contentScale = ContentScale.Crop,
+//                        modifier = Modifier.fillMaxSize()
+//                    )
+//                }
+//
+//                // Action Buttons
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(horizontal = 16.dp),
+//                    horizontalArrangement = Arrangement.SpaceEvenly
+//                ) {
+//                    Button(
+//                        onClick = {
+//                            navController.navigate(Destinations.DONOR_FORM_ROUTE)
+//                                  },
+//                        modifier = Modifier
+//                            .weight(1f)
+//                            .padding(end = 8.dp)
+//                            .height(48.dp),
+//                        shape = RoundedCornerShape(12.dp),
+//                        colors = ButtonDefaults.buttonColors(
+//                            containerColor = Red500,
+//                            contentColor = Color.White
+//                        )
+//                    ) {
+//                        Text(
+//                            text = "Become a Donor",
+//                            fontSize = 14.sp,
+//                            fontWeight = FontWeight.Bold
+//                        )
+//                    }
+//
+//                    Button(
+//                        onClick = {
+//                            navController.navigate(Destinations.HOSPITAL_LIST_ROUTE)
+//                                  },
+//                        modifier = Modifier
+//                            .weight(1f)
+//                            .height(48.dp),
+//                        shape = RoundedCornerShape(12.dp),
+//                        colors = ButtonDefaults.buttonColors(
+//                            containerColor = Red500,
+//                            contentColor = Color.White
+//                        )
+//                    ) {
+//                        Text(
+//                            text = "Request Blood",
+//                            fontSize = 14.sp,
+//                            fontWeight = FontWeight.Bold
+//                        )
+//                    }
+//                }
+//
+//                Spacer(modifier = Modifier.height(24.dp))
+//            }
+//        }
+//    }
+//}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -90,18 +272,19 @@ fun HomeScreen(navController: NavController) {
                 .padding(innerPadding)
                 .background(Color.White)
         ) {
-            // Search Bar - Now with functional search
+            // Search Bar - Minimized version
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .height(48.dp), // Fixed height
                 shape = RoundedCornerShape(12.dp),
                 color = LightGrayBg
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 10.dp),
+                        .padding(horizontal = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -111,27 +294,31 @@ fun HomeScreen(navController: NavController) {
                         modifier = Modifier.size(20.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    OutlinedTextField(
-                        value = searchQuery.value,
-                        onValueChange = {
-                            searchQuery.value = it
-                            showSearchResults.value = it.isNotEmpty()
-                        },
+                    Box(
                         modifier = Modifier.weight(1f),
-                        placeholder = {
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        if (searchQuery.value.isEmpty()) {
                             Text(
-                                "Search blood, hospitals, or blood banks",
+                                "Search hospitals or blood banks",
                                 color = TextGray,
                                 fontSize = 14.sp
                             )
-                        },
-                        singleLine = true,
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = Color.Transparent,
-                            unfocusedBorderColor = Color.Transparent,
-                            containerColor = Color.Transparent
+                        }
+                        BasicTextField(
+                            value = searchQuery.value,
+                            onValueChange = {
+                                searchQuery.value = it
+                                showSearchResults.value = it.isNotEmpty()
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            singleLine = true,
+                            textStyle = LocalTextStyle.current.copy(
+                                fontSize = 14.sp,
+                                color = Color.Black
+                            )
                         )
-                    )
+                    }
                 }
             }
 
@@ -150,8 +337,8 @@ fun HomeScreen(navController: NavController) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(450.dp)
-                        .padding(16.dp)
+                        .height(400.dp) // Reduced height
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                         .clip(RoundedCornerShape(12.dp))
                 ) {
                     Image(
@@ -166,16 +353,15 @@ fun HomeScreen(navController: NavController) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Button(
                         onClick = {
                             navController.navigate(Destinations.DONOR_FORM_ROUTE)
-                                  },
+                        },
                         modifier = Modifier
                             .weight(1f)
-                            .padding(end = 8.dp)
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(
@@ -193,7 +379,7 @@ fun HomeScreen(navController: NavController) {
                     Button(
                         onClick = {
                             navController.navigate(Destinations.HOSPITAL_LIST_ROUTE)
-                                  },
+                        },
                         modifier = Modifier
                             .weight(1f)
                             .height(48.dp),
@@ -211,7 +397,7 @@ fun HomeScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }
@@ -423,85 +609,7 @@ fun HospitalCard(hospital: Hospital, onItemClick: () -> Unit) {
     }
 }
 
-//@Composable
-//fun BottomNavigationBar(navController: NavController) {
-//    val currentDestination = navController.currentBackStackEntry?.destination?.route
-//
-//    NavigationBar(
-//        containerColor = Color.White
-//    ) {
-//        NavigationBarItem(
-//            selected = currentDestination == Destinations.HOME_ROUTE,
-//            onClick = { navController.navigate(Destinations.HOME_ROUTE) },
-//            icon = {
-//                Icon(
-//                    painter = painterResource(id = R.drawable.baseline_home_24),
-//                    contentDescription = "Home"
-//                )
-//            },
-//            label = { Text("Check Donation") },
-//            colors = NavigationBarItemDefaults.colors(
-//                selectedIconColor = Red500,
-//                selectedTextColor = Red500,
-//                unselectedIconColor = TextGray,
-//                unselectedTextColor = TextGray
-//            )
-//        )
-//        NavigationBarItem(
-//            selected = currentDestination == Destinations.CHECK_MY_DONATION_ROUTE,
-//            onClick = { navController.navigate(Destinations.CHECK_MY_DONATION_ROUTE) },
-//            icon = {
-//                Icon(
-//                    painter = painterResource(id = R.drawable.baseline_history_24),
-//                    contentDescription = "Check My Donation"
-//                )
-//            },
-//            label = { Text("Check My Donation") },
-//            colors = NavigationBarItemDefaults.colors(
-//                selectedIconColor = Red500,
-//                selectedTextColor = Red500,
-//                unselectedIconColor = TextGray,
-//                unselectedTextColor = TextGray
-//            )
-//        )
-//
-//        NavigationBarItem(
-//            selected = currentDestination == Destinations.RARE_GROUPS_ROUTE,
-//            onClick = { navController.navigate(Destinations.RARE_GROUPS_ROUTE) },
-//            icon = {
-//                Icon(
-//                    painter = painterResource(id = R.drawable.baseline_chat_24),
-//                    contentDescription = "Groups"
-//                )
-//            },
-//            label = { Text("Groups") },
-//            colors = NavigationBarItemDefaults.colors(
-//                selectedIconColor = Red500,
-//                selectedTextColor = Red500,
-//                unselectedIconColor = TextGray,
-//                unselectedTextColor = TextGray
-//            )
-//        )
-//
-//        NavigationBarItem(
-//            selected = currentDestination == Destinations.HISTORY_ROUTE,
-//            onClick = { navController.navigate(Destinations.HISTORY_ROUTE) },
-//            icon = {
-//                Icon(
-//                    painter = painterResource(id = R.drawable.baseline_history_24),
-//                    contentDescription = "History"
-//                )
-//            },
-//            label = { Text("History") },
-//            colors = NavigationBarItemDefaults.colors(
-//                selectedIconColor = Red500,
-//                selectedTextColor = Red500,
-//                unselectedIconColor = TextGray,
-//                unselectedTextColor = TextGray
-//            )
-//        )
-//    }
-//}
+
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val currentDestination = navController.currentBackStackEntry?.destination?.route
