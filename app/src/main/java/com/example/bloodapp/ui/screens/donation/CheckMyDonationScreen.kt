@@ -167,7 +167,7 @@ fun PersonalInformationSection() {
         InfoRow(
             icon = Icons.Default.Phone,
             label = "Donation",
-            value = "Unlisted"
+            value = "Utilised"
         )
 
         Divider(
